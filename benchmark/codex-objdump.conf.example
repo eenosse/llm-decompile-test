@@ -1,0 +1,17 @@
+# Local configuration for run_codex_objdump.sh.
+# Use unquoted KEY=VALUE entries. Do not store API keys or auth tokens here.
+# Setup guide: README.md at the repository root.
+
+# Required for real runs. Pin an exact model ID rather than a moving alias.
+MODEL=
+
+# Dedicated Codex home containing benchmark authentication only.
+# Use an absolute path. Example: /Users/your-name/.codex-objdump-benchmark
+BENCH_HOME=
+
+REASONING=high
+TRACK=asm-only
+TRIAL=trial-1
+OUTPUT=codex_objdump_runs
+PROMPT=benchmark/codex-objdump-prompt.txt
+IMAGE=type-recovery-bench:ubuntu22.04

@@ -1,0 +1,7 @@
+/artifacts/
+/artifacts_result_only/
+# /codex_objdump_runs/
+# /benchmark/codex-objdump.conf
+
+.DS_Store
+*/.DS_Store
