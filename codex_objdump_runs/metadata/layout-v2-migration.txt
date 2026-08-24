@@ -1,0 +1,5 @@
+Codex run layout migration v2
+manifest rows: 80
+moved runs: 79
+missing runs retained in manifest: 1
+original manifest: metadata/manifest.pre-layout-v2.tsv

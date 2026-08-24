@@ -10,8 +10,8 @@ binary is processed in a fresh non-interactive Codex thread. The default mode
 pipes all evidence through stdin and disables the shell, web search, plugins,
 apps, subagents, image tools, hooks, and persisted or injected Codex memories.
 
-The implementation uses `codex exec`, `--ephemeral`, JSONL tracing, and
-`--output-last-message` as documented in OpenAI's
+The implementation uses `codex exec`, `--ephemeral`, a temporary per-invocation
+SQLite directory, JSONL tracing, and `--output-last-message` as documented in OpenAI's
 [non-interactive mode guide](https://learn.chatgpt.com/docs/non-interactive-mode).
 The memory, history, web-search, shell-tool, and multi-agent settings come from
 the official [Codex configuration reference](https://developers.openai.com/codex/config-file/config-reference).
@@ -80,6 +80,13 @@ A valid setup prints the resolved model, reasoning level, evidence track,
 dedicated Codex home, Codex CLI version, GNU objdump version, and Docker image.
 Run this after changing the config or upgrading the Codex CLI.
 
+The dedicated home remains on disk because it contains the OAuth login. Codex
+may also keep non-context files there, such as its installation identifier and
+model cache. The runner redirects `sqlite_home` to a new temporary directory
+for every invocation and removes it on exit. Therefore rerunning a case does
+not reuse SQLite-backed memory, job, queue, goal, or log state. Do not delete
+`auth.json`; doing so requires another login.
+
 ## Prepare without spending a model call
 
 This generates the canonical evidence with the pinned Ubuntu image and records
@@ -101,11 +108,24 @@ its hashes and tool versions:
 ```
 
 Use `--track objdump-complete` for the code-plus-data track. Outputs go to
-`codex_objdump_runs/case-<binary-hash>-<track>/<trial>/`.
+the browsable hierarchy:
+
+```text
+codex_objdump_runs/runs/
+  <suite>/<compiler>/<optimization>/<program>/<track>/<trial>/
+```
+
+For example:
+
+```text
+codex_objdump_runs/runs/result-only/
+  x86_64-linux-gnu-11.4.0/O3/07_singly_linked_list/asm-only/trial-1/
+```
 
 Each completed run contains:
 
 - `program.objdump.txt`: the exact evidence sent to Codex.
+- `case-id.txt`: the content-derived binary/track identifier.
 - `prompt.txt`: the fixed instruction prompt.
 - `recovered.c`: the raw final response; it is never manually repaired.
 - `trace.jsonl`: all Codex events and token-usage records.
@@ -114,10 +134,20 @@ Each completed run contains:
 - `status.txt`: `COMPLETE` or a failure/invalidity reason.
 - Codex and GNU objdump version files.
 
-The evaluator-only `codex_objdump_runs/manifest.tsv` maps the opaque case ID to
-the original binary path and records hashes, model, reasoning effort, track,
-trial, timestamps, and status. Never mount this directory into a model-visible
-workspace.
+The evaluator-only `codex_objdump_runs/manifest.tsv` records both the readable
+`run_path` and content-derived case ID alongside the original binary path,
+hashes, model, reasoning effort, track, trial, timestamps, and status. Never
+mount this directory into a model-visible workspace.
+
+To migrate outputs produced by an older runner, preview and then apply the
+organization step:
+
+```sh
+./benchmark/organize_codex_runs.sh --check codex_objdump_runs
+./benchmark/organize_codex_runs.sh --apply codex_objdump_runs
+```
+
+The migration preserves the old manifest under `codex_objdump_runs/metadata/`.
 
 ## Run a batch
 
@@ -178,6 +208,7 @@ Every sample uses:
 - A new `codex exec` process and thread; never `resume` or `fork`.
 - `--ephemeral` and `history.persistence="none"`.
 - `memories.use_memories=false` and `memories.generate_memories=false`.
+- A new temporary `sqlite_home`, deleted when the runner exits.
 - `--ignore-user-config` and `--ignore-rules`.
 - Read-only sandboxing and `approval_policy=never`.
 - Disabled shell, web, apps, plugins, hooks, subagents, and image/computer tools.

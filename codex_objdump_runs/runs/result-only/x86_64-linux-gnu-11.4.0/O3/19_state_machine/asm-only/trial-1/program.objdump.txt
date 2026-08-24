@@ -1,0 +1,418 @@
+
+/input/program.elf:     file format elf64-x86-64
+
+
+Disassembly of section .init:
+
+0000000000401000 <.init>:
+  401000:	endbr64 
+  401004:	sub    rsp,0x8
+  401008:	mov    rax,QWORD PTR [rip+0x2fe9]        # 403ff8 <__printf_chk@plt+0x2f58>
+  40100f:	test   rax,rax
+  401012:	je     401016 <__snprintf_chk@plt-0x5a>
+  401014:	call   rax
+  401016:	add    rsp,0x8
+  40101a:	ret    
+
+Disassembly of section .plt:
+
+0000000000401020 <.plt>:
+  401020:	push   QWORD PTR [rip+0x2fe2]        # 404008 <__printf_chk@plt+0x2f68>
+  401026:	bnd jmp QWORD PTR [rip+0x2fe3]        # 404010 <__printf_chk@plt+0x2f70>
+  40102d:	nop    DWORD PTR [rax]
+  401030:	endbr64 
+  401034:	push   0x0
+  401039:	bnd jmp 401020 <__snprintf_chk@plt-0x50>
+  40103f:	nop
+  401040:	endbr64 
+  401044:	push   0x1
+  401049:	bnd jmp 401020 <__snprintf_chk@plt-0x50>
+  40104f:	nop
+  401050:	endbr64 
+  401054:	push   0x2
+  401059:	bnd jmp 401020 <__snprintf_chk@plt-0x50>
+  40105f:	nop
+  401060:	endbr64 
+  401064:	push   0x3
+  401069:	bnd jmp 401020 <__snprintf_chk@plt-0x50>
+  40106f:	nop
+
+Disassembly of section .plt.sec:
+
+0000000000401070 <__snprintf_chk@plt>:
+  401070:	endbr64 
+  401074:	bnd jmp QWORD PTR [rip+0x2f9d]        # 404018 <__printf_chk@plt+0x2f78>
+  40107b:	nop    DWORD PTR [rax+rax*1+0x0]
+
+0000000000401080 <__stack_chk_fail@plt>:
+  401080:	endbr64 
+  401084:	bnd jmp QWORD PTR [rip+0x2f95]        # 404020 <__printf_chk@plt+0x2f80>
+  40108b:	nop    DWORD PTR [rax+rax*1+0x0]
+
+0000000000401090 <putc@plt>:
+  401090:	endbr64 
+  401094:	bnd jmp QWORD PTR [rip+0x2f8d]        # 404028 <__printf_chk@plt+0x2f88>
+  40109b:	nop    DWORD PTR [rax+rax*1+0x0]
+
+00000000004010a0 <__printf_chk@plt>:
+  4010a0:	endbr64 
+  4010a4:	bnd jmp QWORD PTR [rip+0x2f85]        # 404030 <__printf_chk@plt+0x2f90>
+  4010ab:	nop    DWORD PTR [rax+rax*1+0x0]
+
+Disassembly of section .text:
+
+00000000004010b0 <.text>:
+  4010b0:	endbr64 
+  4010b4:	push   rbx
+  4010b5:	pxor   xmm0,xmm0
+  4010b9:	mov    ebx,0x402260
+  4010be:	sub    rsp,0xe0
+  4010c5:	movdqa xmm1,XMMWORD PTR [rip+0x15b3]        # 402680 <__printf_chk@plt+0x15e0>
+  4010cd:	mov    rax,QWORD PTR fs:0x28
+  4010d6:	mov    QWORD PTR [rsp+0xd8],rax
+  4010de:	xor    eax,eax
+  4010e0:	movups XMMWORD PTR [rsp+0x18],xmm0
+  4010e5:	movups XMMWORD PTR [rsp+0x28],xmm0
+  4010ea:	movups XMMWORD PTR [rsp+0x38],xmm0
+  4010ef:	movups XMMWORD PTR [rsp+0x48],xmm0
+  4010f4:	movups XMMWORD PTR [rsp+0x58],xmm0
+  4010f9:	movups XMMWORD PTR [rsp+0x88],xmm0
+  401101:	movups XMMWORD PTR [rsp+0x98],xmm0
+  401109:	movups XMMWORD PTR [rsp+0xa8],xmm0
+  401111:	movups XMMWORD PTR [rsp+0xb8],xmm0
+  401119:	movups XMMWORD PTR [rsp+0xc8],xmm0
+  401121:	movdqa xmm0,XMMWORD PTR [rip+0x1567]        # 402690 <__printf_chk@plt+0x15f0>
+  401129:	mov    DWORD PTR [rsp],0x1
+  401130:	mov    DWORD PTR [rsp+0x14],0x0
+  401138:	mov    DWORD PTR [rsp+0x70],0x2
+  401140:	mov    DWORD PTR [rsp+0x84],0x0
+  40114b:	movups XMMWORD PTR [rsp+0x4],xmm1
+  401150:	movups XMMWORD PTR [rsp+0x74],xmm0
+  401155:	nop    DWORD PTR [rax]
+  401158:	mov    esi,DWORD PTR [rbx]
+  40115a:	mov    rdi,rsp
+  40115d:	add    rbx,0x4
+  401161:	call   401470 <__printf_chk@plt+0x3d0>
+  401166:	cmp    rbx,0x402280
+  40116d:	jne    401158 <__printf_chk@plt+0xb8>
+  40116f:	mov    rdi,rsp
+  401172:	mov    ebx,0x402240
+  401177:	call   401520 <__printf_chk@plt+0x480>
+  40117c:	nop    DWORD PTR [rax+0x0]
+  401180:	mov    esi,DWORD PTR [rbx]
+  401182:	lea    rdi,[rsp+0x70]
+  401187:	add    rbx,0x4
+  40118b:	call   401470 <__printf_chk@plt+0x3d0>
+  401190:	cmp    rbx,0x402260
+  401197:	jne    401180 <__printf_chk@plt+0xe0>
+  401199:	lea    rdi,[rsp+0x70]
+  40119e:	call   401520 <__printf_chk@plt+0x480>
+  4011a3:	mov    eax,0x402288
+  4011a8:	mov    edx,0x402678
+  4011ad:	xor    ecx,ecx
+  4011af:	nop
+  4011b0:	cmp    QWORD PTR [rax],0x1
+  4011b4:	sbb    ecx,0xffffffff
+  4011b7:	cmp    QWORD PTR [rax+0x18],0x1
+  4011bc:	sbb    ecx,0xffffffff
+  4011bf:	cmp    QWORD PTR [rax+0x30],0x1
+  4011c4:	sbb    ecx,0xffffffff
+  4011c7:	cmp    QWORD PTR [rax+0x48],0x1
+  4011cc:	sbb    ecx,0xffffffff
+  4011cf:	cmp    QWORD PTR [rax+0x60],0x1
+  4011d4:	sbb    ecx,0xffffffff
+  4011d7:	cmp    QWORD PTR [rax+0x78],0x1
+  4011dc:	sbb    ecx,0xffffffff
+  4011df:	cmp    QWORD PTR [rax+0x90],0x1
+  4011e7:	sbb    ecx,0xffffffff
+  4011ea:	add    rax,0xa8
+  4011f0:	cmp    rdx,rax
+  4011f3:	jne    4011b0 <__printf_chk@plt+0x110>
+  4011f5:	xor    eax,eax
+  4011f7:	mov    edx,0x2a
+  4011fc:	mov    esi,0x402071
+  401201:	mov    edi,0x1
+  401206:	call   4010a0 <__printf_chk@plt>
+  40120b:	mov    rax,QWORD PTR [rsp+0xd8]
+  401213:	sub    rax,QWORD PTR fs:0x28
+  40121c:	jne    401229 <__printf_chk@plt+0x189>
+  40121e:	add    rsp,0xe0
+  401225:	xor    eax,eax
+  401227:	pop    rbx
+  401228:	ret    
+  401229:	call   401080 <__stack_chk_fail@plt>
+  40122e:	xchg   ax,ax
+  401230:	endbr64 
+  401234:	xor    ebp,ebp
+  401236:	mov    r9,rdx
+  401239:	pop    rsi
+  40123a:	mov    rdx,rsp
+  40123d:	and    rsp,0xfffffffffffffff0
+  401241:	push   rax
+  401242:	push   rsp
+  401243:	xor    r8d,r8d
+  401246:	xor    ecx,ecx
+  401248:	mov    rdi,0x4010b0
+  40124f:	call   QWORD PTR [rip+0x2d9b]        # 403ff0 <__printf_chk@plt+0x2f50>
+  401255:	hlt    
+  401256:	cs nop WORD PTR [rax+rax*1+0x0]
+  401260:	endbr64 
+  401264:	ret    
+  401265:	cs nop WORD PTR [rax+rax*1+0x0]
+  40126f:	nop
+  401270:	mov    eax,0x404048
+  401275:	cmp    rax,0x404048
+  40127b:	je     401290 <__printf_chk@plt+0x1f0>
+  40127d:	mov    eax,0x0
+  401282:	test   rax,rax
+  401285:	je     401290 <__printf_chk@plt+0x1f0>
+  401287:	mov    edi,0x404048
+  40128c:	jmp    rax
+  40128e:	xchg   ax,ax
+  401290:	ret    
+  401291:	data16 cs nop WORD PTR [rax+rax*1+0x0]
+  40129c:	nop    DWORD PTR [rax+0x0]
+  4012a0:	mov    esi,0x404048
+  4012a5:	sub    rsi,0x404048
+  4012ac:	mov    rax,rsi
+  4012af:	shr    rsi,0x3f
+  4012b3:	sar    rax,0x3
+  4012b7:	add    rsi,rax
+  4012ba:	sar    rsi,1
+  4012bd:	je     4012d0 <__printf_chk@plt+0x230>
+  4012bf:	mov    eax,0x0
+  4012c4:	test   rax,rax
+  4012c7:	je     4012d0 <__printf_chk@plt+0x230>
+  4012c9:	mov    edi,0x404048
+  4012ce:	jmp    rax
+  4012d0:	ret    
+  4012d1:	data16 cs nop WORD PTR [rax+rax*1+0x0]
+  4012dc:	nop    DWORD PTR [rax+0x0]
+  4012e0:	endbr64 
+  4012e4:	cmp    BYTE PTR [rip+0x2d65],0x0        # 404050 <stdout@GLIBC_2.2.5+0x8>
+  4012eb:	jne    401300 <__printf_chk@plt+0x260>
+  4012ed:	push   rbp
+  4012ee:	mov    rbp,rsp
+  4012f1:	call   401270 <__printf_chk@plt+0x1d0>
+  4012f6:	mov    BYTE PTR [rip+0x2d53],0x1        # 404050 <stdout@GLIBC_2.2.5+0x8>
+  4012fd:	pop    rbp
+  4012fe:	ret    
+  4012ff:	nop
+  401300:	ret    
+  401301:	data16 cs nop WORD PTR [rax+rax*1+0x0]
+  40130c:	nop    DWORD PTR [rax+0x0]
+  401310:	endbr64 
+  401314:	jmp    4012a0 <__printf_chk@plt+0x200>
+  401316:	cs nop WORD PTR [rax+rax*1+0x0]
+  401320:	endbr64 
+  401324:	mov    eax,DWORD PTR [rdi]
+  401326:	mov    BYTE PTR [rdi+0x52],0x0
+  40132a:	lea    edx,[rax*8+0x0]
+  401331:	sub    edx,eax
+  401333:	add    edx,0x1000
+  401339:	mov    DWORD PTR [rdi+0x48],edx
+  40133c:	lea    edx,[rax+rax*2]
+  40133f:	lea    eax,[rax+rdx*4+0x9000]
+  401346:	mov    DWORD PTR [rdi+0x4c],eax
+  401349:	ret    
+  40134a:	nop    WORD PTR [rax+rax*1+0x0]
+  401350:	endbr64 
+  401354:	mov    edx,DWORD PTR [rdi+0x24]
+  401357:	movdqu xmm2,XMMWORD PTR [rdi+0x48]
+  40135c:	lea    eax,[rdx*8+0x200]
+  401363:	movd   xmm0,eax
+  401367:	lea    eax,[rdx+rdx*2+0x80]
+  40136e:	movq   xmm1,rax
+  401373:	punpcklqdq xmm0,xmm1
+  401377:	paddq  xmm0,xmm2
+  40137b:	movq   rax,xmm0
+  401380:	movups XMMWORD PTR [rdi+0x48],xmm0
+  401384:	movzx  eax,al
+  401387:	add    DWORD PTR [rdi+0x58],eax
+  40138a:	ret    
+  40138b:	nop    DWORD PTR [rax+rax*1+0x0]
+  401390:	endbr64 
+  401394:	add    BYTE PTR [rdi+0x52],0x1
+  401398:	ret    
+  401399:	nop    DWORD PTR [rax+0x0]
+  4013a0:	endbr64 
+  4013a4:	pxor   xmm0,xmm0
+  4013a8:	mov    eax,0x2000
+  4013ad:	movups XMMWORD PTR [rdi+0x48],xmm0
+  4013b1:	movups XMMWORD PTR [rdi+0x58],xmm0
+  4013b5:	mov    WORD PTR [rdi+0x50],ax
+  4013b9:	ret    
+  4013ba:	nop    WORD PTR [rax+rax*1+0x0]
+  4013c0:	endbr64 
+  4013c4:	mov    eax,DWORD PTR [rdi+0x48]
+  4013c7:	pxor   xmm0,xmm0
+  4013cb:	movups XMMWORD PTR [rdi+0x58],xmm0
+  4013cf:	add    eax,0x1
+  4013d2:	mov    BYTE PTR [rdi+0x5e],0x1
+  4013d6:	mov    DWORD PTR [rdi+0x58],eax
+  4013d9:	mov    eax,0x5b4
+  4013de:	mov    WORD PTR [rdi+0x5c],ax
+  4013e2:	movups XMMWORD PTR [rdi+0x48],xmm0
+  4013e6:	ret    
+  4013e7:	nop    WORD PTR [rax+rax*1+0x0]
+  4013f0:	endbr64 
+  4013f4:	pxor   xmm0,xmm0
+  4013f8:	mov    r9,QWORD PTR [rdi+0x50]
+  4013fc:	add    r9,QWORD PTR [rdi+0x48]
+  401400:	xor    eax,eax
+  401402:	movups XMMWORD PTR [rdi+0x48],xmm0
+  401406:	mov    r8d,0x402004
+  40140c:	add    rdi,0x4c
+  401410:	mov    ecx,0x18
+  401415:	mov    DWORD PTR [rdi-0x4],esi
+  401418:	mov    edx,0x1
+  40141d:	mov    esi,0x18
+  401422:	movups XMMWORD PTR [rdi+0xc],xmm0
+  401426:	jmp    401070 <__snprintf_chk@plt>
+  40142b:	nop    DWORD PTR [rax+rax*1+0x0]
+  401430:	endbr64 
+  401434:	movdqa xmm0,XMMWORD PTR [rip+0x1234]        # 402670 <__printf_chk@plt+0x15d0>
+  40143c:	or     esi,0x8000
+  401442:	xor    eax,eax
+  401444:	mov    DWORD PTR [rdi+0x63],0x0
+  40144b:	mov    BYTE PTR [rdi+0x67],0x0
+  40144f:	mov    DWORD PTR [rdi+0x48],esi
+  401452:	mov    DWORD PTR [rdi+0x5c],0x0
+  401459:	mov    WORD PTR [rdi+0x60],ax
+  40145d:	mov    BYTE PTR [rdi+0x62],0x0
+  401461:	movups XMMWORD PTR [rdi+0x4c],xmm0
+  401465:	ret    
+  401466:	cs nop WORD PTR [rax+rax*1+0x0]
+  401470:	push   r12
+  401472:	mov    eax,esi
+  401474:	push   rbp
+  401475:	lea    rsi,[rax+rax*2]
+  401479:	mov    r12,rax
+  40147c:	push   rbx
+  40147d:	mov    ecx,DWORD PTR [rdi+0x1c]
+  401480:	mov    rbx,rdi
+  401483:	add    DWORD PTR [rdi+rax*4+0x2c],0x1
+  401488:	lea    rax,[rcx+rcx*4]
+  40148c:	mov    rdx,rcx
+  40148f:	lea    rax,[rcx+rax*4]
+  401493:	shl    rax,0x3
+  401497:	lea    rax,[rax+rsi*8]
+  40149b:	mov    ebp,DWORD PTR [rax+0x402280]
+  4014a1:	mov    rax,QWORD PTR [rax+0x402288]
+  4014a8:	cmp    ecx,ebp
+  4014aa:	je     4014f0 <__printf_chk@plt+0x450>
+  4014ac:	test   rax,rax
+  4014af:	je     4014bc <__printf_chk@plt+0x41c>
+  4014b1:	mov    esi,r12d
+  4014b4:	mov    rdi,rbx
+  4014b7:	call   rax
+  4014b9:	mov    edx,DWORD PTR [rbx+0x1c]
+  4014bc:	add    DWORD PTR [rbx+0x24],0x1
+  4014c0:	movd   xmm0,ebp
+  4014c4:	movd   xmm1,edx
+  4014c8:	mov    r8d,ebp
+  4014cb:	punpckldq xmm0,xmm1
+  4014cf:	mov    ecx,r12d
+  4014d2:	mov    esi,0x402020
+  4014d7:	xor    eax,eax
+  4014d9:	movq   QWORD PTR [rbx+0x1c],xmm0
+  4014de:	mov    edi,0x1
+  4014e3:	pop    rbx
+  4014e4:	pop    rbp
+  4014e5:	pop    r12
+  4014e7:	jmp    4010a0 <__printf_chk@plt>
+  4014ec:	nop    DWORD PTR [rax+0x0]
+  4014f0:	test   rax,rax
+  4014f3:	jne    4014b1 <__printf_chk@plt+0x411>
+  4014f5:	add    DWORD PTR [rdi+0x28],0x1
+  4014f9:	mov    r8d,ecx
+  4014fc:	pop    rbx
+  4014fd:	mov    ecx,r12d
+  401500:	pop    rbp
+  401501:	mov    esi,0x402014
+  401506:	mov    edi,0x1
+  40150b:	pop    r12
+  40150d:	jmp    4010a0 <__printf_chk@plt>
+  401512:	data16 cs nop WORD PTR [rax+rax*1+0x0]
+  40151d:	nop    DWORD PTR [rax]
+  401520:	push   rbp
+  401521:	lea    rcx,[rdi+0x4]
+  401525:	mov    rbp,rdi
+  401528:	mov    esi,0x40202c
+  40152d:	push   rbx
+  40152e:	sub    rsp,0x8
+  401532:	mov    eax,DWORD PTR [rdi+0x28]
+  401535:	push   rax
+  401536:	mov    eax,DWORD PTR [rdi+0x24]
+  401539:	push   rax
+  40153a:	mov    r9d,DWORD PTR [rdi+0x20]
+  40153e:	xor    eax,eax
+  401540:	mov    r8d,DWORD PTR [rdi+0x1c]
+  401544:	mov    edx,DWORD PTR [rdi]
+  401546:	mov    edi,0x1
+  40154b:	call   4010a0 <__printf_chk@plt>
+  401550:	mov    eax,DWORD PTR [rbp+0x1c]
+  401553:	pop    rsi
+  401554:	pop    rdi
+  401555:	cmp    eax,0x4
+  401558:	ja     4015c8 <__printf_chk@plt+0x528>
+  40155a:	cmp    eax,0x2
+  40155d:	ja     4015e7 <__printf_chk@plt+0x547>
+  401563:	test   eax,eax
+  401565:	je     4015cd <__printf_chk@plt+0x52d>
+  401567:	mov    ecx,DWORD PTR [rbp+0x4c]
+  40156a:	mov    edx,DWORD PTR [rbp+0x48]
+  40156d:	mov    esi,0x40203f
+  401572:	mov    edi,0x1
+  401577:	movzx  r9d,BYTE PTR [rbp+0x52]
+  40157c:	movzx  r8d,WORD PTR [rbp+0x50]
+  401581:	xor    eax,eax
+  401583:	call   4010a0 <__printf_chk@plt>
+  401588:	lea    rbx,[rbp+0x2c]
+  40158c:	add    rbp,0x48
+  401590:	mov    edx,DWORD PTR [rbx]
+  401592:	mov    esi,0x40206d
+  401597:	mov    edi,0x1
+  40159c:	xor    eax,eax
+  40159e:	add    rbx,0x4
+  4015a2:	call   4010a0 <__printf_chk@plt>
+  4015a7:	cmp    rbp,rbx
+  4015aa:	jne    401590 <__printf_chk@plt+0x4f0>
+  4015ac:	mov    rsi,QWORD PTR [rip+0x2a95]        # 404048 <stdout@GLIBC_2.2.5>
+  4015b3:	add    rsp,0x8
+  4015b7:	mov    edi,0xa
+  4015bc:	pop    rbx
+  4015bd:	pop    rbp
+  4015be:	jmp    401090 <putc@plt>
+  4015c3:	nop    DWORD PTR [rax+rax*1+0x0]
+  4015c8:	cmp    eax,0x5
+  4015cb:	jne    401588 <__printf_chk@plt+0x4e8>
+  4015cd:	mov    edx,DWORD PTR [rbp+0x48]
+  4015d0:	lea    rcx,[rbp+0x4c]
+  4015d4:	mov    esi,0x402050
+  4015d9:	xor    eax,eax
+  4015db:	mov    edi,0x1
+  4015e0:	call   4010a0 <__printf_chk@plt>
+  4015e5:	jmp    401588 <__printf_chk@plt+0x4e8>
+  4015e7:	mov    rcx,QWORD PTR [rbp+0x50]
+  4015eb:	mov    rdx,QWORD PTR [rbp+0x48]
+  4015ef:	push   rax
+  4015f0:	mov    esi,0x402057
+  4015f5:	movzx  eax,BYTE PTR [rbp+0x5e]
+  4015f9:	mov    edi,0x1
+  4015fe:	push   rax
+  4015ff:	movzx  r9d,WORD PTR [rbp+0x5c]
+  401604:	xor    eax,eax
+  401606:	mov    r8d,DWORD PTR [rbp+0x58]
+  40160a:	call   4010a0 <__printf_chk@plt>
+  40160f:	pop    rdx
+  401610:	pop    rcx
+  401611:	jmp    401588 <__printf_chk@plt+0x4e8>
+
+Disassembly of section .fini:
+
+0000000000401618 <.fini>:
+  401618:	endbr64 
+  40161c:	sub    rsp,0x8
+  401620:	add    rsp,0x8
+  401624:	ret    

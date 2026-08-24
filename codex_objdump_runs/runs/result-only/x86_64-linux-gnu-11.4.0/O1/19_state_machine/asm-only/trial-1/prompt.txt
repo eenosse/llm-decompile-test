@@ -1,0 +1,17 @@
+The stdin block contains the complete GNU objdump evidence for one fully
+stripped x86-64 Linux executable. It is the only program evidence available.
+
+Recover the closest standalone GNU C11 implementation supported by the
+evidence. Reconstruct observable control flow, calls, global data, aggregate
+layouts, pointer relationships, integer widths, floating-point operations, and
+signedness when the instructions distinguish it. Use neutral invented
+identifiers when original names cannot be inferred. Do not invent certainty:
+when several source-level representations are equivalent, choose a conservative
+implementation.
+
+Ignore compiler-generated startup and teardown code except where it affects
+the program's behavior. The recovered program must not invoke, embed, or depend
+on the original executable.
+
+Return only valid GNU C11 source text. Do not use Markdown fences and do not
+include an explanation before or after the source.

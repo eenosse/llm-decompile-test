@@ -3,6 +3,7 @@ set -euo pipefail
 
 script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 repo_dir=$(CDPATH= cd -- "$script_dir/.." && pwd)
+. "$script_dir/codex_objdump_layout.sh"
 
 track=asm-only
 model=
@@ -261,6 +262,21 @@ if ((prepare_only == 0)); then
     }
 fi
 
+# Keep Codex runtime databases out of the authenticated benchmark home. The
+# home persists only so OAuth credentials can be refreshed; all SQLite-backed
+# job, log, queue, goal, and memory state is private to this invocation and is
+# deleted by cleanup().
+scratch_root=$(mktemp -d "${TMPDIR:-/tmp}/codex-objdump.XXXXXX")
+sqlite_root=$scratch_root/codex-sqlite
+mkdir -p "$sqlite_root"
+cleanup()
+{
+    if [[ -n ${scratch_root:-} && -d $scratch_root ]]; then
+        rm -rf -- "$scratch_root"
+    fi
+}
+trap cleanup EXIT HUP INT TERM
+
 codex_policy_args=(
     --disable shell_tool
     --disable multi_agent
@@ -278,6 +294,7 @@ codex_policy_args=(
     -c 'memories.use_memories=false'
     -c 'memories.generate_memories=false'
     -c 'history.persistence="none"'
+    -c "sqlite_home=\"$sqlite_root\""
     -c "model_reasoning_effort=\"$reasoning\""
 )
 
@@ -313,6 +330,7 @@ if ((check_only)); then
         "  reasoning: $reasoning" \
         "  track:     $track" \
         "  Codex home: $bench_home" \
+        '  SQLite:    temporary per invocation' \
         "  Codex CLI: $codex_version" \
         "  objdump:   $objdump_version" \
         "  image:     $image"
@@ -324,7 +342,7 @@ if [[ ! -e $out_root/README.txt ]]; then
     printf '%s\n' \
         'Codex objdump benchmark outputs' \
         '' \
-        'Each case directory is keyed by the stripped-binary hash and evidence track.' \
+        'Browse runs/<suite>/<compiler>/<optimization>/<program>/<track>/<trial>.' \
         'Each trial preserves one raw Codex response and its complete audit record.' \
         '' \
         'Start with manifest.tsv to map case IDs to evaluator-only binary paths.' \
@@ -335,19 +353,17 @@ if [[ ! -e $out_root/README.txt ]]; then
         >"$out_root/README.txt"
 fi
 manifest=$out_root/manifest.tsv
+manifest_header=$'case_id\ttrial\tstatus\ttrack\tmodel\treasoning\tbinary_path\tbinary_sha256\tevidence_sha256\tprompt_sha256\trecovered_sha256\tstarted_utc\tfinished_utc\twall_seconds\trun_path\tsuite\tcompiler\toptimization\tprogram'
 if [[ ! -e $manifest ]]; then
-    printf 'case_id\ttrial\tstatus\ttrack\tmodel\treasoning\tbinary_path\tbinary_sha256\tevidence_sha256\tprompt_sha256\trecovered_sha256\tstarted_utc\tfinished_utc\twall_seconds\n' \
-        >"$manifest"
+    printf '%s\n' "$manifest_header" >"$manifest"
+else
+    IFS= read -r actual_manifest_header <"$manifest"
+    [[ $actual_manifest_header == "$manifest_header" ]] || {
+        echo "legacy or unsupported manifest layout: $manifest" >&2
+        echo "run: ./benchmark/organize_codex_runs.sh --apply ${out_root#"$repo_dir"/}" >&2
+        exit 1
+    }
 fi
-
-scratch_root=$(mktemp -d "${TMPDIR:-/tmp}/codex-objdump.XXXXXX")
-cleanup()
-{
-    if [[ -n ${scratch_root:-} && -d $scratch_root ]]; then
-        rm -rf -- "$scratch_root"
-    fi
-}
-trap cleanup EXIT HUP INT TERM
 
 prompt=$(<"$prompt_file")
 prompt_hash=$(hash_file "$prompt_file")
@@ -374,7 +390,17 @@ for binary_arg in "${binaries[@]}"; do
 
     binary_hash=$(hash_file "$binary")
     case_id=case-${binary_hash:0:16}-$track
-    case_out=$out_root/$case_id/$trial
+    codex_objdump_classify_binary "$binary" "$binary_hash"
+    run_path=$codex_layout_relative/$track/$trial
+    case_out=$out_root/$run_path
+    if awk -F '\t' -v c="$case_id" -v t="$trial" \
+        'NR > 1 && $1 == c && $2 == t { found=1 } END { exit !found }' \
+        "$manifest"; then
+        echo "refusing duplicate manifest entry: $case_id/$trial" >&2
+        echo "choose another --trial or --output" >&2
+        overall_status=1
+        continue
+    fi
     if [[ -e $case_out ]]; then
         echo "refusing to overwrite existing run: $case_out" >&2
         echo "choose another --trial or --output" >&2
@@ -382,9 +408,11 @@ for binary_arg in "${binaries[@]}"; do
         continue
     fi
     mkdir -p "$case_out"
+    printf '%s\n' "$case_id" >"$case_out/case-id.txt"
     printf '%s\n' \
         'Files in this trial' \
         '' \
+        'case-id.txt                   content-derived case identifier' \
         'status.txt                    final validity/completion status' \
         'program.objdump.txt           exact evidence sent to Codex' \
         'prompt.txt                    exact fixed instruction prompt' \
@@ -444,10 +472,12 @@ for binary_arg in "${binaries[@]}"; do
         finished_epoch=$(date '+%s')
         wall_seconds=$((finished_epoch - started_epoch))
         printf 'PREPARED\n' >"$case_out/status.txt"
-        printf '%s\t%s\tPREPARED\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t-\t%s\t%s\t%s\n' \
+        printf '%s\t%s\tPREPARED\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t-\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' \
             "$case_id" "$trial" "$track" "$model" "$reasoning" "$binary" \
             "$binary_hash" "$evidence_hash" "$prompt_hash" "$started_utc" \
-            "$finished_utc" "$wall_seconds" >>"$manifest"
+            "$finished_utc" "$wall_seconds" "$run_path" "$codex_layout_suite" \
+            "$codex_layout_compiler" "$codex_layout_optimization" \
+            "$codex_layout_program" >>"$manifest"
         echo "prepared $case_id: $case_out"
         continue
     fi
@@ -499,10 +529,12 @@ for binary_arg in "${binaries[@]}"; do
     finished_epoch=$(date '+%s')
     wall_seconds=$((finished_epoch - started_epoch))
     printf '%s\n' "$status" >"$case_out/status.txt"
-    printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' \
+    printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' \
         "$case_id" "$trial" "$status" "$track" "$model" "$reasoning" \
         "$binary" "$binary_hash" "$evidence_hash" "$prompt_hash" \
         "$recovered_hash" "$started_utc" "$finished_utc" "$wall_seconds" \
+        "$run_path" "$codex_layout_suite" "$codex_layout_compiler" \
+        "$codex_layout_optimization" "$codex_layout_program" \
         >>"$manifest"
 
     if [[ $status == COMPLETE ]]; then

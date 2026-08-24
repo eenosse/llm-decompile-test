@@ -28,6 +28,7 @@ All commands are intended to be run from the repository root.
 | [`codex-objdump.conf.example`](codex-objdump.conf.example) | Shareable pipeline configuration template |
 | `codex-objdump.conf` | Local ignored configuration; model ID and dedicated Codex home |
 | [`run_codex_objdump.sh`](run_codex_objdump.sh) | Isolated single-case and batch Codex runner |
+| [`organize_codex_runs.sh`](organize_codex_runs.sh) | Preview or migrate legacy hash-only run directories to the browsable hierarchy |
 | [`build_matrix.sh`](build_matrix.sh) | Compiler/optimization/stripping matrix builder |
 | [`Dockerfile`](Dockerfile) | Pinned Ubuntu build and GNU objdump environment |
 
@@ -37,7 +38,7 @@ All commands are intended to be run from the repository root.
 |---|---|---|
 | `artifacts/` | Readable-suite ELF variants, DWARF, stdout, and manifest | No |
 | `artifacts_result_only/` | Result-only ELF variants, DWARF, stdout, and manifest | No |
-| `codex_objdump_runs/` | Canonical evidence, raw recovered C, traces, status, and evaluator manifest | Only `program.objdump.txt` is sent through stdin |
+| `codex_objdump_runs/` | Organized runs under `runs/<suite>/<compiler>/<optimization>/<program>/<track>/<trial>`, plus evaluator metadata | Only `program.objdump.txt` is sent through stdin |
 
 These generated directories are ignored by version control. They contain
 ground truth or cross-run information and must never be mounted wholesale into

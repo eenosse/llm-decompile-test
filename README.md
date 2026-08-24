@@ -59,6 +59,12 @@ CODEX_HOME="$HOME/.codex-objdump-benchmark" codex login
 Do not put this directory inside the repository. Its `auth.json` must be
 treated like a password.
 
+The runner keeps this home for authentication but places Codex's SQLite-backed
+runtime state in a fresh temporary directory for each invocation. You do not
+need to clear memory or state database files between benchmark runs. Existing
+database files left by an older runner are no longer consulted; keep
+`auth.json`, since deleting it logs the benchmark home out.
+
 ### 4. Configure the experiment once
 
 If the local config does not exist:
@@ -145,7 +151,11 @@ global data is generally impossible. Report the tracks separately.
 ├── benchmark/                                build and Codex pipeline tooling
 ├── artifacts/                                generated readable-suite ELFs
 ├── artifacts_result_only/                    generated result-only ELFs
-└── codex_objdump_runs/                       generated Codex evidence/results
+└── codex_objdump_runs/
+    ├── manifest.tsv                          evaluator run index
+    ├── metadata/                             migration/audit metadata
+    └── runs/result-only/<compiler>/O<level>/<program>/<track>/<trial>/
+                                               Codex evidence and results
 ```
 
 Generated directories are evaluator-only. Never make the sources, artifact
