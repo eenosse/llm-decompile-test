@@ -1,0 +1,17 @@
+droot 755 0 422165
+dusr 755 0 420123
+ dbin 755 0 24576
+  -file0 644 4096
+  -file1 644 8192
+  -file2 644 12288
+ dlib 755 0 395547
+  -archive0 644 131072
+  -archive1 644 131849
+  -archive2 644 132626
+dvar 755 0 2042
+ -notes 644 220
+ -report 644 1810
+ lfile1_link 644 12 file1
+stat 8 5 1 422165 3
+root/usr/bin/file1
+1

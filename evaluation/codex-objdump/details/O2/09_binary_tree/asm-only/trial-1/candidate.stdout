@@ -1,0 +1,21 @@
+brown (2,2,6)
+ dog (1,8,1)
+fox (2,3,5)
+jumps (2,4,3)
+  lazy (1,7,1)
+ over (2,5,2)
+quick (2,1,7)
+the (3,0,8)
+brown dog fox jumps lazy over quick the 
+the 8
+quick 7
+brown 6
+fox 5
+dog 1
+jumps 3
+over 2
+lazy 1
+
+the 8 7 47
+2 brown jumps
+brown dog fox jumps lazy over quick the 

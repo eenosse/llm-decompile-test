@@ -1,0 +1,9 @@
+get 1 get 2 get 3 get 2 get 4 get 1 get 5 3 value-3 get 0 get 3 2 value-2 get 1 get 6 4 value-4 get 0 get 2 1 value-1 get 1 get 2 get 7 5 value-5 get 0 4
+7 value-7 get 0 2 value-2 get 1 6 value-6 get 0 3 value-3 get 0 3 6 2 7 4 4: 4
+1
+0
+4
+2 value-2 get 2 7 value-7 get 0 6 value-6 get 0 3 value-3 get 0 3 6 7 2 4 4: 4
+4
+6 value-6 get 0 3 value-3 get 0 2 value-2 get 2 7 value-7 get 0 7 2 3 6 4 4: 4
+28.57% 5

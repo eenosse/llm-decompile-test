@@ -1,0 +1,6 @@
+optimization	cases	valid_response	clean_trace	compiles	runs_exit_0	reexecutability	mean_stdout_token_similarity	mean_model_wall_seconds
+O0	20	100.0%	100.0%	100.0%	100.0%	0.0%	0.438	302.2
+O1	20	100.0%	100.0%	100.0%	100.0%	0.0%	0.369	262.6
+O2	20	100.0%	100.0%	95.0%	95.0%	0.0%	0.338	286.9
+O3	20	100.0%	100.0%	95.0%	95.0%	0.0%	0.328	305.9
+ALL	80	100.0%	100.0%	97.5%	97.5%	0.0%	0.368	289.4

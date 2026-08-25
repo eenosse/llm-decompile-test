@@ -1,0 +1,31 @@
+6 935000
+100 record_100 group_a 170000 20
+101 record_101 group_a 145000 9
+102 record_102 group_b 162000 14
+103 record_103 set_c 158000 12
+104 record_104 group_a 151000 11
+105 record_105 group_b 149000 13
+100 105
+103 record_103 set_c
+6 935000
+100 record_100 group_a 170000 20
+102 record_102 group_b 162000 14
+103 record_103 set_c 158000 12
+104 record_104 group_a 151000 11
+105 record_105 group_b 149000 13
+101 record_101 group_a 145000 9
+100 101
+6 935000
+101 record_101 group_a 145000 9
+105 record_105 group_b 149000 13
+104 record_104 group_a 151000 11
+103 record_103 set_c 158000 12
+102 record_102 group_b 162000 14
+100 record_100 group_a 170000 20
+101 100
+3
+3 469000
+105 record_105 group_b 149000 13
+103 record_103 set_c 158000 12
+102 record_102 group_b 162000 14
+105 102

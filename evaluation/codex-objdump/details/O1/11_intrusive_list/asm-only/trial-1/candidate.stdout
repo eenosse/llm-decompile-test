@@ -1,0 +1,25 @@
+D 12 db 9 15 1015
+D 12 db 9 35 1035
+Ttmr0 1030 1
+D 12 db 9 60 1060
+Ttmr1 1055 1
+12 3
+D 7 worker 5 15 1075
+Ttmr0 1075 2
+D 7 worker 5 35 1095
+D 7 worker 5 60 1120
+Ttmr1 1100 2
+Ttmr0 1115 3
+7 2
+D 9 logger 3 15 1135
+D 9 logger 3 35 1155
+4
+A1 init 1 1 0
+A7 worker 4 5 60
+A9 logger 1 3 35
+A12 db 4 9 60
+3
+R 1 8 @
+R 2 16 A
+R 3 24 B
+S 8 2 3

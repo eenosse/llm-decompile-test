@@ -1,0 +1,19 @@
+recovered.c: In function 'total_score':
+recovered.c:323:46: warning: implicit declaration of function 'offsetof' [-Wimplicit-function-declaration]
+  323 |         Item *item = (Item *)((char *)link - offsetof(Item, link));
+      |                                              ^~~~~~~~
+recovered.c:5:1: note: 'offsetof' is defined in header '<stddef.h>'; did you forget to '#include <stddef.h>'?
+    4 | #include <string.h>
+  +++ |+#include <stddef.h>
+    5 | 
+recovered.c:323:55: error: expected expression before 'Item'
+  323 |         Item *item = (Item *)((char *)link - offsetof(Item, link));
+      |                                                       ^~~~
+recovered.c: In function 'print_hierarchy':
+recovered.c:479:55: error: expected expression before 'Item'
+  479 |         Item *item = (Item *)((char *)link - offsetof(Item, link));
+      |                                                       ^~~~
+recovered.c: In function 'free_hierarchy':
+recovered.c:508:55: error: expected expression before 'Item'
+  508 |         Item *item = (Item *)((char *)link - offsetof(Item, link));
+      |                                                       ^~~~

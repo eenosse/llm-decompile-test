@@ -151,6 +151,7 @@ global data is generally impossible. Report the tracks separately.
 ├── benchmark/                                build and Codex pipeline tooling
 ├── artifacts/                                generated readable-suite ELFs
 ├── artifacts_result_only/                    generated result-only ELFs
+├── evaluation/                               generated metric tables and evaluator logs
 └── codex_objdump_runs/
     ├── manifest.tsv                          evaluator run index
     ├── metadata/                             migration/audit metadata
@@ -170,6 +171,7 @@ to a model run.
 | Understand files and available commands | [`benchmark/README.md`](benchmark/README.md) |
 | Run or troubleshoot Codex objdump experiments | [`benchmark/CODEX_OBJDUMP.md`](benchmark/CODEX_OBJDUMP.md) |
 | Understand benchmark methodology and scoring | [`benchmark/METHODOLOGY.md`](benchmark/METHODOLOGY.md) |
+| Evaluate recovered C and design the type metric table | [`benchmark/EVALUATION.md`](benchmark/EVALUATION.md) |
 | See binary-input and type-output prompt schemas | [`benchmark/prompt-template.md`](benchmark/prompt-template.md) |
 | Understand the result-only C wrappers | [`result_only/README.md`](result_only/README.md) |
 

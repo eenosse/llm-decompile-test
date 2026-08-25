@@ -1,0 +1,31 @@
+6 935000
+100 item_zero01 group_01 170000 20
+101 item_alpha01 group_01 145000 9
+102 item_beta002 group_02 162000 14
+103 item_gamma03 grp_03 158000 12
+104 item_delta0001 group_01 151000 11
+105 item_epsilon01 group_02 149000 13
+100 105
+103 item_gamma03 grp_03
+6 935000
+100 item_zero01 group_01 170000 20
+102 item_beta002 group_02 162000 14
+103 item_gamma03 grp_03 158000 12
+104 item_delta0001 group_01 151000 11
+105 item_epsilon01 group_02 149000 13
+101 item_alpha01 group_01 145000 9
+100 101
+6 935000
+101 item_alpha01 group_01 145000 9
+105 item_epsilon01 group_02 149000 13
+104 item_delta0001 group_01 151000 11
+103 item_gamma03 grp_03 158000 12
+102 item_beta002 group_02 162000 14
+100 item_zero01 group_01 170000 20
+101 100
+3
+3 469000
+105 item_epsilon01 group_02 149000 13
+103 item_gamma03 grp_03 158000 12
+102 item_beta002 group_02 162000 14
+105 102

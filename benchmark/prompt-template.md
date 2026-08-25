@@ -45,8 +45,10 @@ input supplied by the evaluator; any disassembly or intermediate representation
 you obtain must be produced during your own analysis of the ELF.
 
 Write valid JSON to /output/types.json. Identify functions by virtual address,
-not guessed source name. Preserve tool-generated variable identifiers when they
-exist. Infer only properties supported by observable binary behavior.
+not guessed source name. Identify globals by virtual address. Preserve
+tool-generated variable identifiers when they exist, and attach a binary
+location to every parameter and local. Infer only properties supported by
+observable binary behavior.
 
 Use these type kinds: unknown, void, integer, float, pointer, array, struct,
 union, and function. Integer types have `bits` and `signed`, where `signed` is
@@ -59,17 +61,52 @@ if unknown) and `type`. Recursive references use the invented type ID.
 Use this top-level shape:
 {
   "types": [],
+  "globals": [
+    {
+      "address": "0x...",
+      "size_bytes": null,
+      "type": {},
+      "confidence": 0.0,
+      "evidence": []
+    }
+  ],
   "functions": [
     {
       "address": "0x...",
       "return_type": {},
-      "parameters": [{"id": "param_1", "type": {}}],
-      "locals": [{"id": "local_1", "type": {}}],
+      "parameters": [
+        {
+          "id": "param_1",
+          "location": {
+            "kind": "abi_slot",
+            "value": "arg0",
+            "pc_ranges": [["0x...", "0x..."]]
+          },
+          "type": {}
+        }
+      ],
+      "locals": [
+        {
+          "id": "local_1",
+          "location": {
+            "kind": "stack",
+            "value": "cfa-0x20",
+            "pc_ranges": [["0x...", "0x..."]]
+          },
+          "type": {}
+        }
+      ],
       "confidence": 0.0,
       "evidence": []
     }
   ]
 }
+
+Location `kind` is one of `abi_slot`, `stack`, `register`, `global`, or
+`unknown`. Express `value` using the disassembler's register names, a CFA/frame
+offset, an ABI argument slot, or a virtual address. `pc_ranges` contains
+half-open address ranges in which the location applies and may be empty when
+unknown. Do not use a guessed source name as an identity.
 
 Put human-meaningful guessed identifiers in optional `semantic_name` fields.
 They are scored separately and must not affect structural type fields. At

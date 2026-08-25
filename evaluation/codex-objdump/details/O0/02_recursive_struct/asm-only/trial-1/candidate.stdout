@@ -1,0 +1,17 @@
+d root       0755 0 422165
+d usr        0755 0 420123
+ d bin        0755 0 24576
+  - tool0      0644 4096
+  - tool1      0644 8192
+  - tool2      0644 12288
+ d lib        0755 0 395547
+  - lib0.so    0644 131072
+  - lib1.so    0644 131849
+  - lib2.so    0644 132626
+d etc        0755 0 2042
+ - hosts      0644 220
+ - passwd     0644 1810
+ l localtime  0644 12 tool1
+8 5 1 422165 3
+root/usr/bin/tool1
+backlink 1

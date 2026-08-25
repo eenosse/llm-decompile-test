@@ -1,0 +1,20 @@
+arena
+P1 .0 .0 .0 .0 P1 .0 .0 ff
+.0 .0 .0 .0 P1 .0 .0 .0 ff
+.0 .0 .0 P1 .0 .0 .0 .0 ff
+.0 .0 P1 .0 .0 .0 .0 P4 ff
+.0 P1 .0 .0 .0 .0 P5 .0 ff
+P1 .0 .0 .0 .0 P6 .0 .0 ff
+.0 .0 .0 .0 P1 .0 .0 .0 ff
+.0 .0 .0 P1 .0 .0 .0 .0 ff
+0:896
+1:1792
+2:2688
+0.00 63.88 -9.12 54.75
+2 3 4 5 36.50 11.90
+[0] 19 key0:0:placeholder0
+[1] 19 key1:3:placeholder0
+[2] 19 key2:6:placeholder0
+[3] 19 key3:9:placeholder0
+[4] 20 key4:12:placeholder0
+[5] 20 key5:15:placeholder0
