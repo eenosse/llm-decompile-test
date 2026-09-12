@@ -1,0 +1,15 @@
+{
+  "index": "02_recursive_struct_fs_path_401523",
+  "opt": "O0",
+  "language": "c",
+  "func_name": "fs_path",
+  "decompiler": "ida_pseudo_norm",
+  "input_asm": "int sub_401523(long long a1, char* a2, unsigned int a3) {\n  int v5;\n  if (!*(uint64_t*)(a1 + 48)) return snprintf(a2, a3, \"%s\", (const char*)a1);\n  v5 = sub_401523(*(uint64_t*)(a1 + 48), a2, a3);\n  if (v5 >= 0 && a3 > v5)\n    return v5 + snprintf(&a2[v5], a3 - v5, \"/%s\", (const char*)a1);\n  else\n    return v5;\n}",
+  "prompt_model1": "# This is the assembly code:\nint sub_401523(long long a1, char* a2, unsigned int a3) {\n  int v5;\n  if (!*(uint64_t*)(a1 + 48)) return snprintf(a2, a3, \"%s\", (const char*)a1);\n  v5 = sub_401523(*(uint64_t*)(a1 + 48), a2, a3);\n  if (v5 >= 0 && a3 > v5)\n    return v5 + snprintf(&a2[v5], a3 - v5, \"/%s\", (const char*)a1);\n  else\n    return v5;\n}\n# What is the source code?\n",
+  "gen_result_model1": "voidĠfunc1(type1*Ġvar1,Ġchar*Ġvar2,ĠintĠvar3)Ġ{ĠifĠ(var1->field1)Ġ{ĠintĠvar4Ġ=Ġfunc1(var1->field1,Ġvar2,Ġvar3);ĠifĠ(var4Ġ>=Ġ0Ġ&&Ġvar4Ġ<Ġvar3)Ġ{Ġsnprintf(var2Ġ+Ġvar4,Ġvar3Ġ-Ġvar4,Ġ\"/%s\",Ġvar1->field2);Ġ}ĠelseĠ{Ġreturn;Ġ}Ġ}ĠelseĠ{Ġsnprintf(var2,Ġvar3,Ġ\"%s\",Ġvar1->field2);Ġ}Ġ}",
+  "prompt_model2": "# This is the normalized code:\nvoidĠfunc1(type1*Ġvar1,Ġchar*Ġvar2,ĠintĠvar3)Ġ{ĠifĠ(var1->field1)Ġ{ĠintĠvar4Ġ=Ġfunc1(var1->field1,Ġvar2,Ġvar3);ĠifĠ(var4Ġ>=Ġ0Ġ&&Ġvar4Ġ<Ġvar3)Ġ{Ġsnprintf(var2Ġ+Ġvar4,Ġvar3Ġ-Ġvar4,Ġ\"/%s\",Ġvar1->field2);Ġ}ĠelseĠ{Ġreturn;Ġ}Ġ}ĠelseĠ{Ġsnprintf(var2,Ġvar3,Ġ\"%s\",Ġvar1->field2);Ġ}Ġ}\n# What is the source code?\n",
+  "gen_result_model2": "voidĠ_path_append(path_t*Ġpath,Ġchar*Ġbuffer,ĠintĠbuffer_size)Ġ{ĠifĠ(path->parent)Ġ{ĠintĠlenĠ=Ġ_path_append(path->parent,Ġbuffer,Ġbuffer_size);ĠifĠ(lenĠ>=Ġ0Ġ&&ĠlenĠ<Ġbuffer_size)Ġ{Ġsnprintf(bufferĠ+Ġlen,Ġbuffer_sizeĠ-Ġlen,Ġ\"/%s\",Ġpath->name);Ġ}ĠelseĠ{Ġreturn;Ġ}Ġ}ĠelseĠ{Ġsnprintf(buffer,Ġbuffer_size,Ġ\"%s\",Ġpath->name);Ġ}Ġ}",
+  "final_result": "fs_path(path_t*Ġpath,Ġchar*Ġbuffer,ĠintĠbuffer_size)Ġ{ĠifĠ(path->parent)Ġ{ĠintĠlenĠ=Ġ_path_append(path->parent,Ġbuffer,Ġbuffer_size);ĠifĠ(lenĠ>=Ġ0Ġ&&ĠlenĠ<Ġbuffer_size)Ġ{Ġsnprintf(bufferĠ+Ġlen,Ġbuffer_sizeĠ-Ġlen,Ġ\"/%s\",Ġpath->name);Ġ}ĠelseĠ{Ġreturn;Ġ}Ġ}ĠelseĠ{Ġsnprintf(buffer,Ġbuffer_size,Ġ\"%s\",Ġpath->name);Ġ}Ġ}",
+  "stripped": 1,
+  "gen_result_model2_stripped": "fs_path(path_t*Ġpath,Ġchar*Ġbuffer,ĠintĠbuffer_size)Ġ{ĠifĠ(path->parent)Ġ{ĠintĠlenĠ=Ġ_path_append(path->parent,Ġbuffer,Ġbuffer_size);ĠifĠ(lenĠ>=Ġ0Ġ&&ĠlenĠ<Ġbuffer_size)Ġ{Ġsnprintf(bufferĠ+Ġlen,Ġbuffer_sizeĠ-Ġlen,Ġ\"/%s\",Ġpath->name);Ġ}ĠelseĠ{Ġreturn;Ġ}Ġ}ĠelseĠ{Ġsnprintf(buffer,Ġbuffer_size,Ġ\"%s\",Ġpath->name);Ġ}Ġ}"
+}

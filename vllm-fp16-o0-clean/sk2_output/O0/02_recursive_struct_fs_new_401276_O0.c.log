@@ -1,0 +1,15 @@
+{
+  "index": "02_recursive_struct_fs_new_401276",
+  "opt": "O0",
+  "language": "c",
+  "func_name": "fs_new",
+  "decompiler": "ida_pseudo_norm",
+  "input_asm": "char* sub_401276(const char* a1, int a2, long long a3) {\n  int v3;\n  char* dest;\n  dest = (char*)calloc(1u, 96u);\n  if (!dest) exit(1);\n  strncpy(dest, a1, 31u);\n  *((uint32_t*)dest + 8) = a2;\n  *((uint64_t*)dest + 5) = a3;\n  if (a2 == 2)\n    v3 = 493;\n  else\n    v3 = 420;\n  *((uint32_t*)dest + 9) = v3;\n  return dest;\n}",
+  "prompt_model1": "# This is the assembly code:\nchar* sub_401276(const char* a1, int a2, long long a3) {\n  int v3;\n  char* dest;\n  dest = (char*)calloc(1u, 96u);\n  if (!dest) exit(1);\n  strncpy(dest, a1, 31u);\n  *((uint32_t*)dest + 8) = a2;\n  *((uint64_t*)dest + 5) = a3;\n  if (a2 == 2)\n    v3 = 493;\n  else\n    v3 = 420;\n  *((uint32_t*)dest + 9) = v3;\n  return dest;\n}\n# What is the source code?\n",
+  "gen_result_model1": "type1*func1(constchar*var1,intvar2,type2*var3){type1*var4=calloc(1,sizeof(var5));if(var4==NULL)exit(1);strncpy(var4->field1,var1,31);var4->field2=var2;var4->field3=var3;if(var2==var6)var4->field4=493;elsevar4->field4=420;returnvar4;}",
+  "prompt_model2": "# This is the normalized code:\ntype1*func1(constchar*var1,intvar2,type2*var3){type1*var4=calloc(1,sizeof(var5));if(var4==NULL)exit(1);strncpy(var4->field1,var1,31);var4->field2=var2;var4->field3=var3;if(var2==var6)var4->field4=493;elsevar4->field4=420;returnvar4;}\n# What is the source code?\n",
+  "gen_result_model2": "*_new_node(constchar*name,inttype,node*next){node*n=calloc(1,sizeof(node));if(n==NULL)exit(1);strncpy(n->name,name,31);n->type=type;n->next=next;if(type==INT)n->size=493;else n->size=420;returnn;}",
+  "final_result": "*fs_new(constchar* name, inttype, node* next) {\n  node* n = calloc(1, sizeof(node));\n  if (n == NULL) exit(1);\n  strncpy(n->name, name, 31);\n  n->type = type;\n  n->next = next;\n  if (type == INT)\n    n->size = 493;\n  else\n    n->size = 420;\n  returnn;\n}",
+  "stripped": 1,
+  "gen_result_model2_stripped": "*fs_new(constchar* name, inttype, node* next) {\n  node* n = calloc(1, sizeof(node));\n  if (n == NULL) exit(1);\n  strncpy(n->name, name, 31);\n  n->type = type;\n  n->next = next;\n  if (type == INT)\n    n->size = 493;\n  else\n    n->size = 420;\n  returnn;\n}"
+}

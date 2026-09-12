@@ -1,0 +1,32 @@
+# Local configuration for run_sk2_ida.sh.
+# Use unquoted KEY=VALUE entries. Do not store API keys or auth tokens here.
+
+# IDA Pro headless executable with Hex-Rays support.
+# Examples:
+#   /Applications/IDA Professional 9.0.app/Contents/MacOS/idat64
+#   /opt/ida/idat64
+IDA_BIN=
+
+# Hugging Face model IDs or local model directories.
+MODEL_PATH=LLM4Binary/sk2decompile-struct-6.7b
+RECOVER_MODEL_PATH=LLM4Binary/sk2decompile-ident-6.7
+
+OUTPUT=sk2_ida_runs
+TRIAL=trial-1
+
+GPUS=1
+MAX_NUM_SEQS=1
+GPU_MEMORY_UTILIZATION=0.8
+
+# Optional vLLM quantized loading. For Q4 BitsAndBytes, use:
+# QUANTIZATION=bitsandbytes
+# LOAD_FORMAT=bitsandbytes
+# DTYPE=bfloat16
+QUANTIZATION=
+LOAD_FORMAT=auto
+DTYPE=auto
+
+TEMPERATURE=0
+MAX_TOTAL_TOKENS=32768
+MAX_NEW_TOKENS=4096
+CLANG_FORMAT=clang-format

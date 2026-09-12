@@ -1,0 +1,15 @@
+{
+  "index": "02_recursive_struct_fs_recursive_size_40137b",
+  "opt": "O0",
+  "language": "c",
+  "func_name": "fs_recursive_size",
+  "decompiler": "ida_pseudo_norm",
+  "input_asm": "long long sub_40137B(long long a1) {\n  long long v2;\n  long long i;\n  v2 = *(uint64_t*)(a1 + 40);\n  for (i = *(uint64_t*)(a1 + 56); i; i = *(uint64_t*)(i + 72))\n    v2 += sub_40137B(i);\n  return v2;\n}",
+  "prompt_model1": "# This is the assembly code:\nlong long sub_40137B(long long a1) {\n  long long v2;\n  long long i;\n  v2 = *(uint64_t*)(a1 + 40);\n  for (i = *(uint64_t*)(a1 + 56); i; i = *(uint64_t*)(i + 72))\n    v2 += sub_40137B(i);\n  return v2;\n}\n# What is the source code?\n",
+  "gen_result_model1": "unsignedĠlongĠlongĠfunc1(type1Ġ*var1)Ġ{ĊunsignedĠlongĠlongĠvar2;Ċtype1Ġ*var3;Ċvar2Ġ=Ġvar1->field1;Ċvar3Ġ=Ġvar1->field2;ĊwhileĠ(var3Ġ!=ĠNULL)Ġ{ĊĠĠvar2Ġ+=Ġfunc1(var3);ĊĠĠvar3Ġ=Ġvar3->field3;Ċ}ĊreturnĠvar2;Ċ}",
+  "prompt_model2": "# This is the normalized code:\nunsignedĠlongĠlongĠfunc1(type1Ġ*var1)Ġ{ĊunsignedĠlongĠlongĠvar2;Ċtype1Ġ*var3;Ċvar2Ġ=Ġvar1->field1;Ċvar3Ġ=Ġvar1->field2;ĊwhileĠ(var3Ġ!=ĠNULL)Ġ{ĊĠĠvar2Ġ+=Ġfunc1(var3);ĊĠĠvar3Ġ=Ġvar3->field3;Ċ}ĊreturnĠvar2;Ċ}\n# What is the source code?\n",
+  "gen_result_model2": "unsignedĠlongĠlongĠ_count_nodes(nodeĠ*n)Ġ{ĊunsignedĠlongĠlongĠcount;ĊnodeĠ*child;ĊcountĠ=Ġn->count;ĊchildĠ=Ġn->child;ĊwhileĠ(childĠ!=ĠNULL)Ġ{ĊĠĠĠcountĠ+=Ġ_count_nodes(child);ĊĠĠĠchildĠ=Ġchild->next;Ċ}ĊreturnĠcount;Ċ}",
+  "final_result": "fs_recursive_size(nodeĠ*n)Ġ{ĊunsignedĠlongĠlongĠcount;ĊnodeĠ*child;ĊcountĠ=Ġn->count;ĊchildĠ=Ġn->child;ĊwhileĠ(childĠ!=ĠNULL)Ġ{ĊĠĠĠcountĠ+=Ġ_count_nodes(child);ĊĠĠĠchildĠ=Ġchild->next;Ċ}ĊreturnĠcount;Ċ}",
+  "stripped": 1,
+  "gen_result_model2_stripped": "fs_recursive_size(nodeĠ*n)Ġ{ĊunsignedĠlongĠlongĠcount;ĊnodeĠ*child;ĊcountĠ=Ġn->count;ĊchildĠ=Ġn->child;ĊwhileĠ(childĠ!=ĠNULL)Ġ{ĊĠĠĠcountĠ+=Ġ_count_nodes(child);ĊĠĠĠchildĠ=Ġchild->next;Ċ}ĊreturnĠcount;Ċ}"
+}

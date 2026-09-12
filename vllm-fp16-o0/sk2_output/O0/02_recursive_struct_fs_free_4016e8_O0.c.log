@@ -1,0 +1,15 @@
+{
+  "index": "02_recursive_struct_fs_free_4016e8",
+  "opt": "O0",
+  "language": "c",
+  "func_name": "fs_free",
+  "decompiler": "ida_pseudo_norm",
+  "input_asm": "void sub_4016E8(uint64_t* a1) {\n  long long i;\n  long long v2;\n  for (i = a1[7]; i; i = v2) {\n    v2 = *(uint64_t*)(i + 72);\n    sub_4016E8(i);\n  }\n  free(a1);\n}",
+  "prompt_model1": "# This is the assembly code:\nvoid sub_4016E8(uint64_t* a1) {\n  long long i;\n  long long v2;\n  for (i = a1[7]; i; i = v2) {\n    v2 = *(uint64_t*)(i + 72);\n    sub_4016E8(i);\n  }\n  free(a1);\n}\n# What is the source code?\n",
+  "gen_result_model1": "voidĠfunc1(type1*Ġvar1)Ġ{Ċtype1*Ġvar2Ġ=Ġvar1->field1;ĊwhileĠ(var2Ġ!=ĠNULL)Ġ{ĊĠĠtype1*Ġvar3Ġ=Ġvar2->field2;ĊĠĠfunc1(var2);ĊĠĠvar2Ġ=Ġvar3;Ċ}Ċfree(var1);Ċ}",
+  "prompt_model2": "# This is the normalized code:\nvoidĠfunc1(type1*Ġvar1)Ġ{Ċtype1*Ġvar2Ġ=Ġvar1->field1;ĊwhileĠ(var2Ġ!=ĠNULL)Ġ{ĊĠĠtype1*Ġvar3Ġ=Ġvar2->field2;ĊĠĠfunc1(var2);ĊĠĠvar2Ġ=Ġvar3;Ċ}Ċfree(var1);Ċ}\n# What is the source code?\n",
+  "gen_result_model2": "voidĠ_free_node(Node*Ġnode)Ġ{ĊNode*ĠchildĠ=Ġnode->child;ĊwhileĠ(childĠ!=ĠNULL)Ġ{ĊĠĠĠNode*ĠnextĠ=Ġchild->next;ĊĠĠĠ_free_node(child);ĊĠĠĠchildĠ=Ġnext;Ċ}Ċfree(node);Ċ}",
+  "final_result": "fs_free(Node*Ġnode)Ġ{ĊNode*ĠchildĠ=Ġnode->child;ĊwhileĠ(childĠ!=ĠNULL)Ġ{ĊĠĠĠNode*ĠnextĠ=Ġchild->next;ĊĠĠĠ_free_node(child);ĊĠĠĠchildĠ=Ġnext;Ċ}Ċfree(node);Ċ}",
+  "stripped": 1,
+  "gen_result_model2_stripped": "fs_free(Node*Ġnode)Ġ{ĊNode*ĠchildĠ=Ġnode->child;ĊwhileĠ(childĠ!=ĠNULL)Ġ{ĊĠĠĠNode*ĠnextĠ=Ġchild->next;ĊĠĠĠ_free_node(child);ĊĠĠĠchildĠ=Ġnext;Ċ}Ċfree(node);Ċ}"
+}

@@ -1,0 +1,15 @@
+{
+  "index": "02_recursive_struct_fs_attach_4012fe",
+  "opt": "O0",
+  "language": "c",
+  "func_name": "fs_attach",
+  "decompiler": "ida_pseudo_norm",
+  "input_asm": "long long sub_4012FE(long long a1, long long a2) {\n  *(uint64_t*)(a2 + 48) = a1;\n  if (*(uint64_t*)(a1 + 64)) {\n    *(uint64_t*)(*(uint64_t*)(a1 + 64) + 72LL) = a2;\n    *(uint64_t*)(a2 + 80) = *(uint64_t*)(a1 + 64) + 72LL;\n  } else {\n    *(uint64_t*)(a1 + 56) = a2;\n    *(uint64_t*)(a2 + 80) = a1 + 56;\n  }\n  *(uint64_t*)(a1 + 64) = a2;\n  return a2;\n}",
+  "prompt_model1": "# This is the assembly code:\nlong long sub_4012FE(long long a1, long long a2) {\n  *(uint64_t*)(a2 + 48) = a1;\n  if (*(uint64_t*)(a1 + 64)) {\n    *(uint64_t*)(*(uint64_t*)(a1 + 64) + 72LL) = a2;\n    *(uint64_t*)(a2 + 80) = *(uint64_t*)(a1 + 64) + 72LL;\n  } else {\n    *(uint64_t*)(a1 + 56) = a2;\n    *(uint64_t*)(a2 + 80) = a1 + 56;\n  }\n  *(uint64_t*)(a1 + 64) = a2;\n  return a2;\n}\n# What is the source code?\n",
+  "gen_result_model1": "void func1(type1* var1, type1* var2) { var2->field1 = var1; if (var1->field2) { var1->field2->field3 = var2; var2->field3 = var1->field2->field3; } else { var1->field4 = var2; var2->field3 = &var1->field4; } var1->field2 = var2; }",
+  "prompt_model2": "# This is the normalized code:\nvoid func1(type1* var1, type1* var2) { var2->field1 = var1; if (var1->field2) { var1->field2->field3 = var2; var2->field3 = var1->field2->field3; } else { var1->field4 = var2; var2->field3 = &var1->field4; } var1->field2 = var2; }\n# What is the source code?\n",
+  "gen_result_model2": "voidfunc1(_list_node_t_*list,_list_node_t_*node){node->prev=list;if(list->next){list->next->next_prev=node;node->next_prev=list->next->next_prev;}else{list->last=node;node->next_prev=&list->last;}list->next=node;}",
+  "final_result": "fs_attach(_list_node_t_* list, _list_node_t_* node) {\n  node->prev = list;\n  if (list->next) {\n    list->next->next_prev = node;\n    node->next_prev = list->next->next_prev;\n  } else {\n    list->last = node;\n    node->next_prev = &list->last;\n  }\n  list->next = node;\n}",
+  "stripped": 1,
+  "gen_result_model2_stripped": "fs_attach(_list_node_t_* list, _list_node_t_* node) {\n  node->prev = list;\n  if (list->next) {\n    list->next->next_prev = node;\n    node->next_prev = list->next->next_prev;\n  } else {\n    list->last = node;\n    node->next_prev = &list->last;\n  }\n  list->next = node;\n}"
+}

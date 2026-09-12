@@ -1,0 +1,1 @@
+fs_attach(list_t*Ġlist,Ġlist_t*Ġitem)Ġ{Ġitem->prevĠ=Ġlist;ĠifĠ(list->last)Ġ{Ġlist->last->nextĠ=Ġitem;Ġitem->nextĠ=Ġlist->last->next;Ġ}ĠelseĠ{Ġlist->firstĠ=Ġitem;Ġitem->nextĠ=Ġ&list->first;Ġ}Ġlist->lastĠ=Ġitem;Ġ}

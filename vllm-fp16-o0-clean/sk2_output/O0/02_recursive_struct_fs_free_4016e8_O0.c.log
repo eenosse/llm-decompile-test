@@ -1,0 +1,15 @@
+{
+  "index": "02_recursive_struct_fs_free_4016e8",
+  "opt": "O0",
+  "language": "c",
+  "func_name": "fs_free",
+  "decompiler": "ida_pseudo_norm",
+  "input_asm": "void sub_4016E8(uint64_t* a1) {\n  long long i;\n  long long v2;\n  for (i = a1[7]; i; i = v2) {\n    v2 = *(uint64_t*)(i + 72);\n    sub_4016E8(i);\n  }\n  free(a1);\n}",
+  "prompt_model1": "# This is the assembly code:\nvoid sub_4016E8(uint64_t* a1) {\n  long long i;\n  long long v2;\n  for (i = a1[7]; i; i = v2) {\n    v2 = *(uint64_t*)(i + 72);\n    sub_4016E8(i);\n  }\n  free(a1);\n}\n# What is the source code?\n",
+  "gen_result_model1": "void func1(type1* var1) {\ntype1* var2 = var1->field1;\nwhile (var2 != NULL) {\n  type1* var3 = var2->field2;\n  func1(var2);\n  var2 = var3;\n}\nfree(var1);\n}",
+  "prompt_model2": "# This is the normalized code:\nvoid func1(type1* var1) {\ntype1* var2 = var1->field1;\nwhile (var2 != NULL) {\n  type1* var3 = var2->field2;\n  func1(var2);\n  var2 = var3;\n}\nfree(var1);\n}\n# What is the source code?\n",
+  "gen_result_model2": "void_func1(_list_node*node){_list_node*next=node->next;_func1(next);free(node);}",
+  "final_result": "fs_free(_list_node* node) {\n  _list_node* next = node->next;\n  _func1(next);\n  free(node);\n}",
+  "stripped": 1,
+  "gen_result_model2_stripped": "fs_free(_list_node* node) {\n  _list_node* next = node->next;\n  _func1(next);\n  free(node);\n}"
+}

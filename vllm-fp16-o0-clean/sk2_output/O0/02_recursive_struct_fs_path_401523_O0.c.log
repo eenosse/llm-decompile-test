@@ -1,0 +1,15 @@
+{
+  "index": "02_recursive_struct_fs_path_401523",
+  "opt": "O0",
+  "language": "c",
+  "func_name": "fs_path",
+  "decompiler": "ida_pseudo_norm",
+  "input_asm": "int sub_401523(long long a1, char* a2, unsigned int a3) {\n  int v5;\n  if (!*(uint64_t*)(a1 + 48)) return snprintf(a2, a3, \"%s\", (const char*)a1);\n  v5 = sub_401523(*(uint64_t*)(a1 + 48), a2, a3);\n  if (v5 >= 0 && a3 > v5)\n    return v5 + snprintf(&a2[v5], a3 - v5, \"/%s\", (const char*)a1);\n  else\n    return v5;\n}",
+  "prompt_model1": "# This is the assembly code:\nint sub_401523(long long a1, char* a2, unsigned int a3) {\n  int v5;\n  if (!*(uint64_t*)(a1 + 48)) return snprintf(a2, a3, \"%s\", (const char*)a1);\n  v5 = sub_401523(*(uint64_t*)(a1 + 48), a2, a3);\n  if (v5 >= 0 && a3 > v5)\n    return v5 + snprintf(&a2[v5], a3 - v5, \"/%s\", (const char*)a1);\n  else\n    return v5;\n}\n# What is the source code?\n",
+  "gen_result_model1": "void func1(type1* var1, char* var2, int var3) { if (var1->field1) { int var4 = func1(var1->field1, var2, var3); if (var4 >= 0 && var4 < var3) { snprintf(var2 + var4, var3 - var4, \"/%s\", var1->field2); } else { return; } } else { snprintf(var2, var3, \"%s\", var1->field2); } }",
+  "prompt_model2": "# This is the normalized code:\nvoid func1(type1* var1, char* var2, int var3) { if (var1->field1) { int var4 = func1(var1->field1, var2, var3); if (var4 >= 0 && var4 < var3) { snprintf(var2 + var4, var3 - var4, \"/%s\", var1->field2); } else { return; } } else { snprintf(var2, var3, \"%s\", var1->field2); } }\n# What is the source code?\n",
+  "gen_result_model2": "voidfunc1(Node*node,char*buf,intlen){if(node->parent){intpos=func1(node->parent,buf,len);if(pos>=0&&pos<len){snprintf(buf+pos,len-pos,\"/%s\",node->name);}else{return;}}else{snprintf(buf,len,\"%s\",node->name);}}",
+  "final_result": "fs_path(Node* node, char* buf, intlen) {\n  if (node->parent) {\n    intpos = func1(node->parent, buf, len);\n    if (pos >= 0 && pos < len) {\n      snprintf(buf + pos, len - pos, \"/%s\", node->name);\n    } else {\n      return;\n    }\n  } else {\n    snprintf(buf, len, \"%s\", node->name);\n  }\n}",
+  "stripped": 1,
+  "gen_result_model2_stripped": "fs_path(Node* node, char* buf, intlen) {\n  if (node->parent) {\n    intpos = func1(node->parent, buf, len);\n    if (pos >= 0 && pos < len) {\n      snprintf(buf + pos, len - pos, \"/%s\", node->name);\n    } else {\n      return;\n    }\n  } else {\n    snprintf(buf, len, \"%s\", node->name);\n  }\n}"
+}

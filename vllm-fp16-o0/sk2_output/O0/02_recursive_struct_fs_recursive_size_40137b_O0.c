@@ -1,0 +1,1 @@
+fs_recursive_size(nodeĠ*n)Ġ{ĊunsignedĠlongĠlongĠcount;ĊnodeĠ*child;ĊcountĠ=Ġn->count;ĊchildĠ=Ġn->child;ĊwhileĠ(childĠ!=ĠNULL)Ġ{ĊĠĠĠcountĠ+=Ġ_count_nodes(child);ĊĠĠĠchildĠ=Ġchild->next;Ċ}ĊreturnĠcount;Ċ}

@@ -1,0 +1,15 @@
+{
+  "index": "02_recursive_struct_fs_find_4014a6",
+  "opt": "O0",
+  "language": "c",
+  "func_name": "fs_find",
+  "decompiler": "ida_pseudo_norm",
+  "input_asm": "long long sub_4014A6(long long a1, const char* a2) {\n  long long i;\n  long long v4;\n  if (!strcmp((const char*)a1, a2)) return a1;\n  for (i = *(uint64_t*)(a1 + 56); i; i = *(uint64_t*)(i + 72)) {\n    v4 = sub_4014A6(i, a2);\n    if (v4) return v4;\n  }\n  return 0;\n}",
+  "prompt_model1": "# This is the assembly code:\nlong long sub_4014A6(long long a1, const char* a2) {\n  long long i;\n  long long v4;\n  if (!strcmp((const char*)a1, a2)) return a1;\n  for (i = *(uint64_t*)(a1 + 56); i; i = *(uint64_t*)(i + 72)) {\n    v4 = sub_4014A6(i, a2);\n    if (v4) return v4;\n  }\n  return 0;\n}\n# What is the source code?\n",
+  "gen_result_model1": "char*func1(type1*var1,char*var2){if(!strcmp(var1->field1,var2)){return var1->field1;}type1*var3=var1->field2;while(var3!=NULL){char*var4=func1(var3,var2);if(var4!=NULL){return var4;}}return NULL;}",
+  "prompt_model2": "# This is the normalized code:\nchar*func1(type1*var1,char*var2){if(!strcmp(var1->field1,var2)){return var1->field1;}type1*var3=var1->field2;while(var3!=NULL){char*var4=func1(var3,var2);if(var4!=NULL){return var4;}}return NULL;}\n# What is the source code?\n",
+  "gen_result_model2": "char*_find_in_tree(node*root,char*name){if(!strcmp(root->name,name)){returnroot->name;}node*child=root->child;while(child!=NULL){char*found=_find_in_tree(child,name);if(found!=NULL){returnfound;}}returnNULL;}",
+  "final_result": "fs_find(node* root, char* name) {\n  if (!strcmp(root->name, name)) {\n    returnroot->name;\n  }\n  node* child = root->child;\n  while (child != NULL) {\n    char* found = _find_in_tree(child, name);\n    if (found != NULL) {\n      returnfound;\n    }\n  }\n  returnNULL;\n}",
+  "stripped": 1,
+  "gen_result_model2_stripped": "fs_find(node* root, char* name) {\n  if (!strcmp(root->name, name)) {\n    returnroot->name;\n  }\n  node* child = root->child;\n  while (child != NULL) {\n    char* found = _find_in_tree(child, name);\n    if (found != NULL) {\n      returnfound;\n    }\n  }\n  returnNULL;\n}"
+}

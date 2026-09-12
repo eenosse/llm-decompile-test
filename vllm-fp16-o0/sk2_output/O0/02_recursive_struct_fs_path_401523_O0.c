@@ -1,0 +1,1 @@
+fs_path(path_t*Ġpath,Ġchar*Ġbuffer,ĠintĠbuffer_size)Ġ{ĠifĠ(path->parent)Ġ{ĠintĠlenĠ=Ġ_path_append(path->parent,Ġbuffer,Ġbuffer_size);ĠifĠ(lenĠ>=Ġ0Ġ&&ĠlenĠ<Ġbuffer_size)Ġ{Ġsnprintf(bufferĠ+Ġlen,Ġbuffer_sizeĠ-Ġlen,Ġ"/%s",Ġpath->name);Ġ}ĠelseĠ{Ġreturn;Ġ}Ġ}ĠelseĠ{Ġsnprintf(buffer,Ġbuffer_size,Ġ"%s",Ġpath->name);Ġ}Ġ}

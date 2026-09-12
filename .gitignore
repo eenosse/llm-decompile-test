@@ -1,5 +1,13 @@
 /artifacts/
 /artifacts_result_only/
+/sk2_ida_runs/
+/sk2_mlx_runs/
+/sk2_gguf_runs/
+/sk2_vllm_runs/
+/sorted_sk2_vllm_runs/
+/models/
+/sk2_vllm_vps_bundle.tar.gz
+/benchmark/sk2-ida.conf
 # /codex_objdump_runs/
 # /benchmark/codex-objdump.conf
 

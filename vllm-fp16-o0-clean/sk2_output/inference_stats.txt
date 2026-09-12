@@ -1,0 +1,16 @@
+Total samples processed: 9
+Model path: LLM4Binary/sk2decompile-struct-6.7b
+Recovery model path: LLM4Binary/sk2decompile-ident-6.7
+Dataset path: /workspace/llm-decompile-test/sk2_ida_runs/case-060494a81ece02cb-sk2-ida/gguf-q4-o0-1/dataset.json
+Language: c
+Decompiler: ida_pseudo_norm
+Quantization: None
+Load format: auto
+Dtype: float16
+Strip function names: True
+
+Samples per optimization level:
+  O0: 9
+  O1: 0
+  O2: 0
+  O3: 0

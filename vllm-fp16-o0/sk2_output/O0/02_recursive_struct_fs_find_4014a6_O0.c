@@ -1,0 +1,1 @@
+fs_find(symbol*s,char*name){if(!strcmp(s->name,name)){returnĠs->name;}symbol*next=s->next;while(next!=NULL){char*found=_find_symbol(next,name);if(found!=NULL){returnĠfound;}}returnĠNULL;}

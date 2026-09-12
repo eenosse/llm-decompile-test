@@ -1,0 +1,15 @@
+{
+  "index": "02_recursive_struct_fs_attach_4012fe",
+  "opt": "O0",
+  "language": "c",
+  "func_name": "fs_attach",
+  "decompiler": "ida_pseudo_norm",
+  "input_asm": "long long sub_4012FE(long long a1, long long a2) {\n  *(uint64_t*)(a2 + 48) = a1;\n  if (*(uint64_t*)(a1 + 64)) {\n    *(uint64_t*)(*(uint64_t*)(a1 + 64) + 72LL) = a2;\n    *(uint64_t*)(a2 + 80) = *(uint64_t*)(a1 + 64) + 72LL;\n  } else {\n    *(uint64_t*)(a1 + 56) = a2;\n    *(uint64_t*)(a2 + 80) = a1 + 56;\n  }\n  *(uint64_t*)(a1 + 64) = a2;\n  return a2;\n}",
+  "prompt_model1": "# This is the assembly code:\nlong long sub_4012FE(long long a1, long long a2) {\n  *(uint64_t*)(a2 + 48) = a1;\n  if (*(uint64_t*)(a1 + 64)) {\n    *(uint64_t*)(*(uint64_t*)(a1 + 64) + 72LL) = a2;\n    *(uint64_t*)(a2 + 80) = *(uint64_t*)(a1 + 64) + 72LL;\n  } else {\n    *(uint64_t*)(a1 + 56) = a2;\n    *(uint64_t*)(a2 + 80) = a1 + 56;\n  }\n  *(uint64_t*)(a1 + 64) = a2;\n  return a2;\n}\n# What is the source code?\n",
+  "gen_result_model1": "voidĠfunc1(type1*Ġvar1,Ġtype1*Ġvar2)Ġ{Ġvar2->field1Ġ=Ġvar1;ĠifĠ(var1->field2)Ġ{Ġvar1->field2->field3Ġ=Ġvar2;Ġvar2->field3Ġ=Ġvar1->field2->field3;Ġ}ĠelseĠ{Ġvar1->field4Ġ=Ġvar2;Ġvar2->field3Ġ=Ġ&var1->field4;Ġ}Ġvar1->field2Ġ=Ġvar2;Ġ}",
+  "prompt_model2": "# This is the normalized code:\nvoidĠfunc1(type1*Ġvar1,Ġtype1*Ġvar2)Ġ{Ġvar2->field1Ġ=Ġvar1;ĠifĠ(var1->field2)Ġ{Ġvar1->field2->field3Ġ=Ġvar2;Ġvar2->field3Ġ=Ġvar1->field2->field3;Ġ}ĠelseĠ{Ġvar1->field4Ġ=Ġvar2;Ġvar2->field3Ġ=Ġ&var1->field4;Ġ}Ġvar1->field2Ġ=Ġvar2;Ġ}\n# What is the source code?\n",
+  "gen_result_model2": "voidĠ_list_add(list_t*Ġlist,Ġlist_t*Ġitem)Ġ{Ġitem->prevĠ=Ġlist;ĠifĠ(list->last)Ġ{Ġlist->last->nextĠ=Ġitem;Ġitem->nextĠ=Ġlist->last->next;Ġ}ĠelseĠ{Ġlist->firstĠ=Ġitem;Ġitem->nextĠ=Ġ&list->first;Ġ}Ġlist->lastĠ=Ġitem;Ġ}",
+  "final_result": "fs_attach(list_t*Ġlist,Ġlist_t*Ġitem)Ġ{Ġitem->prevĠ=Ġlist;ĠifĠ(list->last)Ġ{Ġlist->last->nextĠ=Ġitem;Ġitem->nextĠ=Ġlist->last->next;Ġ}ĠelseĠ{Ġlist->firstĠ=Ġitem;Ġitem->nextĠ=Ġ&list->first;Ġ}Ġlist->lastĠ=Ġitem;Ġ}",
+  "stripped": 1,
+  "gen_result_model2_stripped": "fs_attach(list_t*Ġlist,Ġlist_t*Ġitem)Ġ{Ġitem->prevĠ=Ġlist;ĠifĠ(list->last)Ġ{Ġlist->last->nextĠ=Ġitem;Ġitem->nextĠ=Ġlist->last->next;Ġ}ĠelseĠ{Ġlist->firstĠ=Ġitem;Ġitem->nextĠ=Ġ&list->first;Ġ}Ġlist->lastĠ=Ġitem;Ġ}"
+}

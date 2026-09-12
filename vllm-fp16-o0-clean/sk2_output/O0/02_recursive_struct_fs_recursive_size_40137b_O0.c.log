@@ -1,0 +1,15 @@
+{
+  "index": "02_recursive_struct_fs_recursive_size_40137b",
+  "opt": "O0",
+  "language": "c",
+  "func_name": "fs_recursive_size",
+  "decompiler": "ida_pseudo_norm",
+  "input_asm": "long long sub_40137B(long long a1) {\n  long long v2;\n  long long i;\n  v2 = *(uint64_t*)(a1 + 40);\n  for (i = *(uint64_t*)(a1 + 56); i; i = *(uint64_t*)(i + 72))\n    v2 += sub_40137B(i);\n  return v2;\n}",
+  "prompt_model1": "# This is the assembly code:\nlong long sub_40137B(long long a1) {\n  long long v2;\n  long long i;\n  v2 = *(uint64_t*)(a1 + 40);\n  for (i = *(uint64_t*)(a1 + 56); i; i = *(uint64_t*)(i + 72))\n    v2 += sub_40137B(i);\n  return v2;\n}\n# What is the source code?\n",
+  "gen_result_model1": "unsigned long long func1(type1 *var1) {\nunsigned long long var2;\ntype1 *var3;\nvar2 = var1->field1;\nvar3 = var1->field2;\nwhile (var3 != NULL) {\n  var2 += func1(var3);\n  var3 = var3->field3;\n}\nreturn var2;\n}",
+  "prompt_model2": "# This is the normalized code:\nunsigned long long func1(type1 *var1) {\nunsigned long long var2;\ntype1 *var3;\nvar2 = var1->field1;\nvar3 = var1->field2;\nwhile (var3 != NULL) {\n  var2 += func1(var3);\n  var3 = var3->field3;\n}\nreturn var2;\n}\n# What is the source code?\n",
+  "gen_result_model2": "unsignedlonglongfunc1(node1*arg){unsignedlonglongres;node1*temp;res=arg->val;temp=arg->child;while(temp!=NULL){res+=func1(temp);temp=temp->next;}returnres;}#Whatisthesourcecode?",
+  "final_result": "fs_recursive_size(node1* arg) {\n  unsignedlonglongres;\n  node1* temp;\n  res = arg->val;\n  temp = arg->child;\n  while (temp != NULL) {\n    res += func1(temp);\n    temp = temp->next;\n  }\n  returnres;\n}\n#Whatisthesourcecode ?",
+  "stripped": 1,
+  "gen_result_model2_stripped": "fs_recursive_size(node1* arg) {\n  unsignedlonglongres;\n  node1* temp;\n  res = arg->val;\n  temp = arg->child;\n  while (temp != NULL) {\n    res += func1(temp);\n    temp = temp->next;\n  }\n  returnres;\n}\n#Whatisthesourcecode ?"
+}

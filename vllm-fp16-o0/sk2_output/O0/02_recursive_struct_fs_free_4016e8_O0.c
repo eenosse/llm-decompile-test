@@ -1,0 +1,1 @@
+fs_free(Node*Ġnode)Ġ{ĊNode*ĠchildĠ=Ġnode->child;ĊwhileĠ(childĠ!=ĠNULL)Ġ{ĊĠĠĠNode*ĠnextĠ=Ġchild->next;ĊĠĠĠ_free_node(child);ĊĠĠĠchildĠ=Ġnext;Ċ}Ċfree(node);Ċ}
